@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
         printf("\n");
     }
     */
-    fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%s",\
+    fprintf(fp, "%-18s%-18s%-8d%-8d%-8d%s",\
         inet_ntoa(ip_hdr->ip_src),\
         inet_ntoa(ip_hdr->ip_dst),\
         ntohs(tcp_hdr->th_sport),\
