@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <stdio.h>
 
 #define MAXBYTES2CAPTURE 2048
 
@@ -27,6 +28,9 @@ int main(int argc, char *argv[])
 
   char errBuf[PCAP_ERRBUF_SIZE];
   memset(errBuf, 0, PCAP_ERRBUF_SIZE);
+
+  FILE *fp;
+  fp = fopen("portraffic.log", "a");
 
   if (argc != 2){
     printf("Usage: portraffic <interface>\n");
@@ -65,6 +69,12 @@ int main(int argc, char *argv[])
         printf("\n");
     }
     */
+    fprintf(fp, "%s\t%s\t%s\t%d\t%d\n",\
+        ctime((const time_t *)&pkthdr.ts.tv_sec),\
+        inet_ntoa(ip_hdr->ip_src),\
+        inet_ntoa(ip_hdr->ip_dst),\
+        ntohs(tcp_hdr->th_sport),\
+        ntohs(tcp_hdr->th_dport));
 
     printf("------------------------------------------------\n");
     printf("Received Packet:         %d\n", ++count);
@@ -76,6 +86,7 @@ int main(int argc, char *argv[])
   }
 
   pcap_close(device);
+  fclose(fp);
 
   return 0;
 }
