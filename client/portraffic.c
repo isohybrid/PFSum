@@ -69,12 +69,13 @@ int main(int argc, char *argv[])
         printf("\n");
     }
     */
-    fprintf(fp, "%s\t%s\t%s\t%d\t%d\n",\
-        ctime((const time_t *)&pkthdr.ts.tv_sec),\
+    fprintf(fp, "%s\t%s\t%d\t%d\t%d\t%s",\
         inet_ntoa(ip_hdr->ip_src),\
         inet_ntoa(ip_hdr->ip_dst),\
         ntohs(tcp_hdr->th_sport),\
-        ntohs(tcp_hdr->th_dport));
+        ntohs(tcp_hdr->th_dport),\
+        pkthdr.len,\
+        ctime((const time_t *)&pkthdr.ts.tv_sec));
 
     printf("------------------------------------------------\n");
     printf("Received Packet:         %d\n", ++count);
