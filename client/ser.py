@@ -29,12 +29,12 @@ while(True):
     OUT = 0
     for eachLine in f:
       tline = eachLine.split(',')
-      if tline[2] == data['serverport'] and\
+      if tline[2] == data['server_port'] and\
          tline[3] == data['local_port']:
-           OUT += tline[4]
-      elif tline[3] == data['serverport'] and\
+           OUT += int(tline[4])
+      elif tline[3] == data['server_port'] and\
            tline[2] == data['local_port']:
-           IN += tline[4]
+           IN += int(tline[4])
     ## traffic = {}.fromkeys(('IN', 'OU'),(IN, OUT))
     traffic = {'IN': IN, 'OUT': OUT}
     jsontra = json.dumps(traffic)
