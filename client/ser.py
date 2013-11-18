@@ -25,11 +25,23 @@ while(True):
 
     # deal with the data
     f = open('portraffic.log', 'r')
+    IN = 0
+    OUT = 0
     for eachLine in f:
-      break
+      tline = eachLine.split(',')
+      if tline[2] == data['serverport'] and\
+         tline[3] == data['local_port']:
+           OUT += tline[4]
+      elif tline[3] == data['serverport'] and\
+           tline[2] == data['local_port']:
+           IN += tline[4]
+    ## traffic = {}.fromkeys(('IN', 'OU'),(IN, OUT))
+    traffic = {'IN': IN, 'OUT': OUT}
+    jsontra = json.dumps(traffic)
     f.close()
 
-    tcpCliSock.send('[%s] %s' % (ctime(), encodedjson))
+    tcpCliSock.send('[%s] %s' % (ctime(), jsontra))
+    # tcpCliSock.send('[%s] %s' % (ctime(), encodedjson))
     print json.loads(encodedjson)
 
   tcpCliSock.close()

@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
   /* load the filter program into the packet capture device. */
   pcap_setfilter(device, &filter);
-  
+
   while(1){
     packet = pcap_next(device, &pkthdr);
     /* Assuming is Ethernet! */

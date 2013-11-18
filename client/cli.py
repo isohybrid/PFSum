@@ -8,8 +8,8 @@ BUFSIZ = 1024
 
 data = {
     "server":"115.28.15.60",
-    "server_port":22,
-    "local_port":46780,
+    "server_port":'22',
+    "local_port":'34163',
     "password":"k78931"
 }
 
