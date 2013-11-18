@@ -69,7 +69,16 @@ int main(int argc, char *argv[])
         printf("\n");
     }
     */
+    /*
     fprintf(fp, "%-18s%-18s%-8d%-8d%-8d%s",\
+        inet_ntoa(ip_hdr->ip_src),\
+        inet_ntoa(ip_hdr->ip_dst),\
+        ntohs(tcp_hdr->th_sport),\
+        ntohs(tcp_hdr->th_dport),\
+        pkthdr.len,\
+        ctime((const time_t *)&pkthdr.ts.tv_sec));
+    */
+    fprintf(fp, "%s,%s,%d,%d,%d,%s",\
         inet_ntoa(ip_hdr->ip_src),\
         inet_ntoa(ip_hdr->ip_dst),\
         ntohs(tcp_hdr->th_sport),\

@@ -21,10 +21,13 @@ while(True):
     encodedjson = tcpCliSock.recv(BUFSIZ)
     if not encodedjson:
       break
+    data = dict(json.loads(encodedjson))
 
     # deal with the data
     f = open('portraffic.log', 'r')
-    # for eachLine in f:
+    for eachLine in f:
+      break
+    f.close()
 
     tcpCliSock.send('[%s] %s' % (ctime(), encodedjson))
     print json.loads(encodedjson)
